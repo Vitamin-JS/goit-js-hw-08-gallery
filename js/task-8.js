@@ -50,7 +50,9 @@ import galleryArrayOfItems from "/gallery-items.js";
 
 const galleryRef = document.querySelector(".js-gallery");
 const galleryCollection = createGalleryItems(galleryArrayOfItems);
+// console.log(galleryCollection);
 
+// ============== Creating images on page====================================
 function createGalleryItems(galleryArrayOfItems) {
   return galleryArrayOfItems
     .map(({ preview, original, description }) => {
@@ -70,6 +72,15 @@ function createGalleryItems(galleryArrayOfItems) {
     .join("");
 }
 
-// console.log(galleryCollection);
-
 galleryRef.insertAdjacentHTML("beforeend", galleryCollection);
+
+// ================= Delegeting =============================================
+galleryRef.addEventListener("click", onGaleryClick);
+
+function onGaleryClick(evt) {
+  if (evt.target.nodeName !== "IMG") {
+    return;
+  }
+  evt.preventDefault();
+  console.log("Делегирование");
+}
