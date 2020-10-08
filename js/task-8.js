@@ -48,7 +48,8 @@
 import galleryArrayOfItems from "/gallery-items.js";
 // console.log(galleryArrayOfItems);
 
-const galleryRef = document.querySelector(".js-gallery");
+const galleryRef = document.querySelector(".js-gallery"); // ref for UL
+const modalWindowRef = document.querySelector(".js-lightbox"); // re
 const galleryCollection = createGalleryItems(galleryArrayOfItems);
 // console.log(galleryCollection);
 
@@ -78,9 +79,18 @@ galleryRef.insertAdjacentHTML("beforeend", galleryCollection);
 galleryRef.addEventListener("click", onGaleryClick);
 
 function onGaleryClick(evt) {
+  evt.preventDefault();
   if (evt.target.nodeName !== "IMG") {
+    //  используем IMG т.к. он самый верхний элемент
     return;
   }
-  evt.preventDefault();
-  console.log("Делегирование");
+
+  // console.log("Делегирование");
+}
+
+// ================= Creating Modal window ===================================
+galleryRef.addEventListener("click", onOpenModal);
+
+function onOpenModal() {
+  modalWindowRef.classList.replace("lightbox", ".lightbox.is-open");
 }
