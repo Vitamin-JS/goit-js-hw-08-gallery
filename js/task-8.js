@@ -49,8 +49,11 @@ import galleryArrayOfItems from "/gallery-items.js";
 // console.log(galleryArrayOfItems);
 
 const galleryRef = document.querySelector(".js-gallery"); // ref for UL
-const modalWindowRef = document.querySelector(".js-lightbox"); // re
+const modalWindowRef = document.querySelector(".js-lightbox");
 const galleryCollection = createGalleryItems(galleryArrayOfItems);
+const modalWindowCloseBtn = document.querySelector(
+  '[data-action="close-lightbox"]'
+);
 // console.log(galleryCollection);
 
 // ============== Creating images on page====================================
@@ -88,9 +91,16 @@ function onGaleryClick(evt) {
   // console.log("Делегирование");
 }
 
-// ================= Creating Modal window ===================================
+// ================= Open Modal window ===================================
 galleryRef.addEventListener("click", onOpenModal);
 
 function onOpenModal() {
   modalWindowRef.classList.replace("lightbox", ".lightbox.is-open");
+}
+
+// ================= Open Modal window ===================================
+modalWindowCloseBtn.addEventListener("click", onCloseModal);
+
+function onCloseModal() {
+  modalWindowRef.classList.replace(".lightbox.is-open", "lightbox");
 }
