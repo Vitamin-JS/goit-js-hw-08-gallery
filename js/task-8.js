@@ -48,13 +48,14 @@
 import galleryArrayOfItems from "/gallery-items.js";
 // console.log(galleryArrayOfItems);
 
-const galleryRef = document.querySelector(".js-gallery"); // ref for UL
-const modalWindowRef = document.querySelector(".js-lightbox");
+const galleryRef = document.querySelector(".js-gallery"); // ref at UL
+const modalWindowRef = document.querySelector(".js-lightbox"); // ref at div
 const galleryCollection = createGalleryItems(galleryArrayOfItems);
 const modalWindowCloseBtn = document.querySelector(
   '[data-action="close-lightbox"]'
 );
-// console.log(galleryCollection);
+// const gallerySingleImage = document.querySelector(".lightbox__image");
+// console.log(gallerySingleImage.src);
 
 // ============== Creating images on page====================================
 function createGalleryItems(galleryArrayOfItems) {
@@ -95,12 +96,12 @@ function onGaleryClick(evt) {
 galleryRef.addEventListener("click", onOpenModal);
 
 function onOpenModal() {
-  modalWindowRef.classList.replace("lightbox", ".lightbox.is-open");
+  modalWindowRef.classList.replace("lightbox", "lightbox.is-open");
 }
 
-// ================= Open Modal window ===================================
+// ================= Close Modal window ===================================
 modalWindowCloseBtn.addEventListener("click", onCloseModal);
 
 function onCloseModal() {
-  modalWindowRef.classList.replace(".lightbox.is-open", "lightbox");
+  modalWindowRef.classList.replace("lightbox.is-open", "lightbox");
 }
