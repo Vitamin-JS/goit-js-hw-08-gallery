@@ -98,10 +98,11 @@ galleryRef.addEventListener("click", onOpenModal);
 function onOpenModal(evt) {
   modalWindowRef.classList.replace("lightbox", "lightbox.is-open");
 
-  console.log(evt.target.src);
-  console.log(evt.target.dataset);
+  // console.log(evt.target.src);
+  // console.log(evt.target.dataset.source);
 
-  // evt.target.src = evt.target.dataset;!!!!!!!!!!!!!!======Заменить SRC=======!!!!!!!!!!!!!!!!
+  gallerySingleImage.src = evt.target.dataset.source;
+  gallerySingleImage.alt = evt.target.alt;
 }
 
 // ================= Close Modal window ===================================
