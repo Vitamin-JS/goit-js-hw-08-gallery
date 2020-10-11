@@ -46,17 +46,20 @@
 // 3) Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
 
 import galleryArrayOfItems from "/gallery-items.js";
-// console.log(galleryArrayOfItems);
 
 const galleryRef = document.querySelector(".js-gallery"); // ref at UL
 const modalWindowRef = document.querySelector(".js-lightbox"); // ref at div
 const galleryCollection = createGalleryItems(galleryArrayOfItems);
-const modalWindowCloseBtn = document.querySelector(
-  '[data-action="close-lightbox"]'
-);
+const modalCloseBtn = document.querySelector('[data-action="close-lightbox"]');
 const gallerySingleImage = document.querySelector(".lightbox__image");
 
-// ============== Creating images on page====================================
+galleryRef.insertAdjacentHTML("beforeend", galleryCollection);
+
+galleryRef.addEventListener("click", onGaleryClick);
+galleryRef.addEventListener("click", onOpenModal);
+modalCloseBtn.addEventListener("click", onCloseModal);
+
+// ============== Creating images on page=================================
 function createGalleryItems(galleryArrayOfItems) {
   return galleryArrayOfItems
     .map(({ preview, original, description }) => {
@@ -76,11 +79,7 @@ function createGalleryItems(galleryArrayOfItems) {
     .join("");
 }
 
-galleryRef.insertAdjacentHTML("beforeend", galleryCollection);
-
-// ================= Delegating =============================================
-galleryRef.addEventListener("click", onGaleryClick);
-
+// ================= Delegating ===========================================
 function onGaleryClick(evt) {
   if (evt.target.nodeName !== "IMG") {
     //  используем IMG т.к. он самый верхний элемент
@@ -90,8 +89,6 @@ function onGaleryClick(evt) {
 }
 
 // ================= Open Modal window ===================================
-galleryRef.addEventListener("click", onOpenModal);
-
 function onOpenModal(evt) {
   modalWindowRef.classList.add("is-open");
   // console.log(evt.target.src);
@@ -101,7 +98,8 @@ function onOpenModal(evt) {
 }
 
 // ================= Close Modal window ===================================
-modalWindowCloseBtn.addEventListener("click", onCloseModal);
 function onCloseModal() {
-  modalWindowRef.classList.replace("lightbox.is-open", "lightbox");
+  modalWindowRef.classList.remove("is-open");
+  gallerySingleImage.src = "";
+  gallerySingleImage.alt = "";
 }
