@@ -80,6 +80,7 @@ body {
 }
 
 .lightbox.is-open {
+  /* display: flex; */
   opacity: 1;
   pointer-events: initial;
 }

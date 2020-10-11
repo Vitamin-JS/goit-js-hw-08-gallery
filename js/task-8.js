@@ -3,7 +3,7 @@
 
 // Разбей задание на несколько подзадач:
 
-// 1) Создание и рендер разметки по массиву данных и предоставленному шаблону.
+// 1) Создание и рендер разметки по массиву данных и предоставленному шаблону. ====== OK
 // 2) Реализация делегирования на галерее ul.js-gallery и получение url большого изображения.
 // 3) Открытие модального окна по клику на элементе галереи.
 // 4) Подмена значения атрибута src элемента img.lightbox__image.
@@ -55,7 +55,6 @@ const modalWindowCloseBtn = document.querySelector(
   '[data-action="close-lightbox"]'
 );
 const gallerySingleImage = document.querySelector(".lightbox__image");
-// console.log(gallerySingleImage.src);
 
 // ============== Creating images on page====================================
 function createGalleryItems(galleryArrayOfItems) {
@@ -79,35 +78,30 @@ function createGalleryItems(galleryArrayOfItems) {
 
 galleryRef.insertAdjacentHTML("beforeend", galleryCollection);
 
-// ================= Delegeting =============================================
+// ================= Delegating =============================================
 galleryRef.addEventListener("click", onGaleryClick);
 
 function onGaleryClick(evt) {
-  evt.preventDefault();
   if (evt.target.nodeName !== "IMG") {
     //  используем IMG т.к. он самый верхний элемент
     return;
   }
-
-  // console.log("Делегирование");
+  evt.preventDefault();
 }
 
 // ================= Open Modal window ===================================
 galleryRef.addEventListener("click", onOpenModal);
 
 function onOpenModal(evt) {
-  modalWindowRef.classList.replace("lightbox", "lightbox.is-open");
-
+  modalWindowRef.classList.add("is-open");
   // console.log(evt.target.src);
   // console.log(evt.target.dataset.source);
-
   gallerySingleImage.src = evt.target.dataset.source;
   gallerySingleImage.alt = evt.target.alt;
 }
 
 // ================= Close Modal window ===================================
 modalWindowCloseBtn.addEventListener("click", onCloseModal);
-
 function onCloseModal() {
   modalWindowRef.classList.replace("lightbox.is-open", "lightbox");
 }
