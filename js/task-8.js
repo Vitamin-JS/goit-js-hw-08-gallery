@@ -45,7 +45,7 @@
 // 2) Закрытие модального окна по нажатию клавиши ESC.
 // 3) Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
 
-import galleryArrayOfItems from "/gallery-items.js";
+import galleryArrayOfItems from "/js/gallery-items.js";
 
 const galleryRef = document.querySelector(".js-gallery"); // ref at UL
 const modalWindowRef = document.querySelector(".js-lightbox"); // ref at div
@@ -55,7 +55,6 @@ const gallerySingleImage = document.querySelector(".lightbox__image");
 
 galleryRef.insertAdjacentHTML("beforeend", galleryCollection);
 
-galleryRef.addEventListener("click", onGaleryClick);
 galleryRef.addEventListener("click", onOpenModal);
 modalCloseBtn.addEventListener("click", onCloseModal);
 
@@ -79,17 +78,14 @@ function createGalleryItems(galleryArrayOfItems) {
     .join("");
 }
 
-// ================= Delegating ===========================================
-function onGaleryClick(evt) {
+// ================= Open Modal window + Делегирование ====================
+function onOpenModal(evt) {
   if (evt.target.nodeName !== "IMG") {
-    //  используем IMG т.к. он самый верхний элемент
+    //  Делегирование, используем IMG т.к. он самый верхний элемент
     return;
   }
   evt.preventDefault();
-}
 
-// ================= Open Modal window ===================================
-function onOpenModal(evt) {
   modalWindowRef.classList.add("is-open");
   // console.log(evt.target.src);
   // console.log(evt.target.dataset.source);
