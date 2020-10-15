@@ -45,7 +45,7 @@
 // 2) Закрытие модального окна по нажатию клавиши ESC.
 // 3) Пролистывание изображений галереи в открытом модальном окне клавишами "влево" и "вправо".
 
-import galleryArrayOfItems from "./gallery-items.js";
+import galleryArrayOfItems from "/js/gallery-items.js";
 
 const galleryRef = document.querySelector(".js-gallery"); // ref at UL
 const modalWindowRef = document.querySelector(".js-lightbox"); // ref at div
@@ -96,6 +96,6 @@ function onOpenModal(evt) {
 // ================= Close Modal window ===================================
 function onCloseModal() {
   modalWindowRef.classList.remove("is-open");
-  gallerySingleImage.src = "";
-  gallerySingleImage.alt = "";
+  gallerySingleImage.src = " ";
+  gallerySingleImage.alt = " ";
 }
